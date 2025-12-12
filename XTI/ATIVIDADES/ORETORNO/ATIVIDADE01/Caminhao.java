@@ -1,14 +1,11 @@
 package ATIVIDADES.ORETORNO.ATIVIDADE01;
 
-public class Caminhao extends Veiculos{
+public class Caminhao extends Veiculo{
 	private double capacidadeCarga;
 
 	public Caminhao(String marca, String modelo, int ano, double valorDiaria, double capacidadeCarga){
-		this.setMarca(marca);
-		this.setModelo(modelo);
-		this.setAno(ano);
-		this.setValorDiaria(valorDiaria);
-		this.setCapacidadeCarga(capacidadeCarga);
+		super(marca,modelo,ano,valorDiaria);
+		this.capacidadeCarga = capacidadeCarga;
 	}
 	
 	public double getCapacidadeCarga() {
@@ -18,8 +15,13 @@ public class Caminhao extends Veiculos{
 		this.capacidadeCarga = capacidadeCarga;
 	}
 	
+	@Override
 	void exibirInformacoes(){
-		System.out.println(getMarca()+"\n"+getModelo()+"\n"+getAno()+"\n"+getValorDiaria()+"\n"+getCapacidadeCarga());
+		System.out.println(
+				"Marca: "+getMarca()+"\n"+
+		        "Modelo: "+getModelo()+"\n"+
+				"Ano: "+getAno()+"\n"+
+		        "Valor Diaria: "+getValorDiaria()+"\n"+
+				"Capacidade de carga: "+getCapacidadeCarga()+"Toneladas"+"\n");
 	}
-
 }

@@ -1,15 +1,12 @@
 package ATIVIDADES.ORETORNO.ATIVIDADE01;
 
-public class Moto extends Veiculos{
+public class Moto extends Veiculo{
 	
 	private int cilindradas;
 
-	public Moto(String marca, String modelo, int ano, double valorDiaria, int Cilindradas){
-		this.setMarca(marca);
-		this.setModelo(modelo);
-		this.setAno(ano);
-		this.setValorDiaria(valorDiaria);
-		this.setCilindradas(Cilindradas);
+	public Moto(String marca, String modelo, int ano, double valorDiaria, int cilindradas){
+		super(marca,modelo,ano,valorDiaria);
+		this.cilindradas = cilindradas;
 	}
 	
 	public int getCilindradas() {
@@ -19,8 +16,13 @@ public class Moto extends Veiculos{
 		this.cilindradas = cilindradas;
 	}
 	
+	@Override
 	void exibirInformacoes(){
-		System.out.println(getMarca()+"\n"+getModelo()+"\n"+getAno()+"\n"+getValorDiaria()+"\n"+getCilindradas());
+		System.out.println(
+				"Marca: "+getMarca()+"\n"+
+		        "Modelo: "+getModelo()+"\n"+
+				"Ano: "+getAno()+"\n"+
+		        "Valor Diaria: "+getValorDiaria()+"\n"+
+				"Cilindradas: "+getCilindradas()+"\n");
 	}
-
 }
