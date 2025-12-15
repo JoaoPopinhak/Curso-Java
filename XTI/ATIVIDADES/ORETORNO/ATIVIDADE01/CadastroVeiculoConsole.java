@@ -98,7 +98,7 @@ public class CadastroVeiculoConsole{
 								 + "Para cadastrar um caminhão digite 3: \n"
 								 + "Para mostrar carros cadastrados digite 4: \n"
 								 + "Para realizar um orçamento do alugel do carro digite 5: \n"
-								 + "Para encerrar digite 5: ");
+								 + "Para encerrar digite 6: ");
 				int opcao = scan.nextInt();
 				scan.nextLine();
 				return opcao;
@@ -108,5 +108,21 @@ public class CadastroVeiculoConsole{
 				scan.nextLine();
 			}
 		}
+	}
+	
+	void mostrarMenuOrcamento(){
+		veiculoService.listarTodos();
+		
+		System.out.println("Selecione o veículo que deseja fazer o orçamento: \n");
+		int idCarro=scan.nextInt();
+		
+		Veiculo veiculo = veiculoService.selecionarCarro(idCarro);
+		
+		System.out.println("Informa quantos dias deseja alugar o carro: \n");
+		int diasLocado = scan.nextInt();
+		
+		double valorOrcamento = veiculo.calcularDiaria(veiculo, diasLocado);
+		
+		System.out.println("O valor total do orçamento: "+valorOrcamento+" R$");
 	}
 }

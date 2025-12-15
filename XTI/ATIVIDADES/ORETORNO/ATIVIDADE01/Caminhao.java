@@ -22,6 +22,6 @@ public class Caminhao extends Veiculo{
 		        "Modelo: "+getModelo()+"\n"+
 				"Ano: "+getAno()+"\n"+
 		        "Valor Diaria: "+getValorDiaria()+"\n"+
-				"Capacidade de carga: "+getCapacidadeCarga()+"Toneladas"+"\n");
+				"Capacidade de carga: "+getCapacidadeCarga()+" Toneladas"+"\n");
 	}
 }

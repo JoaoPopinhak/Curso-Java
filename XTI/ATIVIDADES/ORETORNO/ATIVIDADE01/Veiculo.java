@@ -62,7 +62,7 @@ public class Veiculo {
 	 * @param diasLocados
 	 * @return O valor total da locação (valorDiaria x diasLocados)
 	 */
-	double calcularDiaria(int diasLocados){
+	double calcularDiaria(Veiculo veiculo,int diasLocados){
 		return valorDiaria * diasLocados;
 	}
 	
@@ -73,7 +73,7 @@ public class Veiculo {
 		System.out.println("Marca: "+getMarca()+"\n"
 	                      +"Modelo: "+getModelo()+"\n"
 				          +"Ano: "+getAno()+"\n"+
-	                       "Valor Diaria: "+getValorDiaria()+"\n");
+	                       "Valor Diaria: "+getValorDiaria());
 	}
 
 }

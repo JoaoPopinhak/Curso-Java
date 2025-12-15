@@ -8,6 +8,8 @@ public interface VeiculoService {
 	void cadastrarCarro(String marca, String modelo, int ano, double valorDiaria, int quantidadePortas, Boolean arCondicionado);
 	void cadastrarMoto(String marca, String modelo, int ano, double valorDiaria, int cilindradas);
 	void cadastrarCaminhao(String marca, String modelo, int ano, double valorDiaria, double capacidadeCarga);
+	Veiculo selecionarCarro(int idCarro);
 	void listarTodos();
 	void listarAcima();
+	
 }

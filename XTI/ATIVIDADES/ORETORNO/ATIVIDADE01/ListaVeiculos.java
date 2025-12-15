@@ -19,6 +19,12 @@ public class ListaVeiculos implements VeiculoService{
 		public void cadastrarCaminhao(String marca, String modelo, int ano, double valorDiaria, double capacidadeCarga){
 			ListaVeiculos.add(new Caminhao(marca,modelo,ano,valorDiaria,capacidadeCarga));
 		}
+		
+		@Override
+		public Veiculo selecionarCarro(int idCarro){
+			Veiculo veiculo = ListaVeiculos.get(idCarro);
+			return veiculo;
+		}
 
 		@Override
 		public void listarTodos(){

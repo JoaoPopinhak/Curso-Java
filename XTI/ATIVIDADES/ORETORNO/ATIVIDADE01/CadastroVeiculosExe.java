@@ -23,10 +23,9 @@ public class CadastroVeiculosExe {
 				veiculoService.listarTodos();
 				break;
 			case 5:
-				
-				break;
+				interfaceConsole.mostrarMenuOrcamento();
 			}
-		}while(opcao!=5);
+		}while(opcao!=6);
 		veiculoService.listarAcima();
 	}
 }
