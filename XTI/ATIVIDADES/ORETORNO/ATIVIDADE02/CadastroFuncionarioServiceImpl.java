@@ -16,4 +16,6 @@ public class CadastroFuncionarioServiceImpl implements CadastroFuncionarioServic
 	public Funcionario cadastrarNovoEstagiario(String nome, double salarioBase) throws SalarioInvalidoException {
 		return new Estagiario(nome, salarioBase);
 	}
+	
+
 }
