@@ -18,19 +18,20 @@ public class ContaBancariaImpl implements ContaBancariaService{
 	}
 
 	@Override
-	public void sacar(int idConta, double valorSaque){
+	public void sacar(int idConta, double valorSaque) throws SaldoInsuficienteException,ValorInvalidoException{
 		ContaBancaria conta = listContaBancaria.get(idConta);
 		conta.sacar(valorSaque);
 	}
 
 	@Override
-	public void depositar(int idConta, double valorDeposito){
+	public void depositar(int idConta, double valorDeposito)throws ValorInvalidoException{
 		ContaBancaria conta = listContaBancaria.get(idConta);
 		conta.depositar(valorDeposito);
 	}
 
 	@Override
-	public void renderJuros(ContaPoupanca conta){
+	public void renderJuros(int idConta){
+		ContaPoupanca conta =(ContaPoupanca)listContaBancaria.get(idConta);
 		conta.renderJuros();
 	}
 	

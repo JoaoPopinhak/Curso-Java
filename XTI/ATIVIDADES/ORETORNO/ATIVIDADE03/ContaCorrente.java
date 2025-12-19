@@ -6,15 +6,11 @@ public class ContaCorrente extends ContaBancaria{
 		super(titular,saldo);
 	}
 	
-	
 	@Override
-	public void sacar(double valorSaque){
-		if(valorSaque <= 0){
-			//lança exception
-		}else if(valorSaque > saldo){
-			//lanca excpetion
-		}
-		saldo -= valorSaque;
-		saldo -= 2.50; 
+	public void sacar(double valorSaque)throws SaldoInsuficienteException,ValorInvalidoException{
+		double valorComTaxa = valorSaque + 2.50;
+		super.sacar(valorComTaxa);
 	}
+
+	
 }

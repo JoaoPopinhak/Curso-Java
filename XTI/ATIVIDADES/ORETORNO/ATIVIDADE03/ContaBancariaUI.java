@@ -1,5 +1,6 @@
 package ATIVIDADES.ORETORNO.ATIVIDADE03;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ContaBancariaUI {
@@ -10,26 +11,42 @@ public class ContaBancariaUI {
 		this.service = service;
 	}
 	
-	public void contaBancaria(){
+	public void contaBancaria()throws SaldoInsuficienteException,ValorInvalidoException{
+		boolean opcao = true;
 		do {
-			int opcaoMenuPrincipal = menuPrincipal();
-			
-			switch(opcaoMenuPrincipal){
-			case 1:
-				menuCadastroConta();
-				break;
-			case 2: 
-				depositarValor();
-				break;
-			case 3:
-				sacarValor();
-				break;
-			case 4:
-				service.listarConta();
-				break;
+			try {
+				int opcaoMenuPrincipal = menuPrincipal();
+				
+				switch(opcaoMenuPrincipal){
+				case 1:
+					menuCadastroConta();
+					break;
+				case 2: 
+					depositarValor();
+					break;
+				case 3:
+					sacarValor();
+					break;
+				case 4:
+					service.listarConta();
+					break;
+				case 5:
+					opcao = false;
+					break;
+				default:
+					System.err.println("Opção Inválida.");
+				}
+			}catch(SaldoInsuficienteException e1){
+				System.err.println(e1.getMessage());
+			}catch(InputMismatchException e2){
+				System.err.println("Digíto inválido.");
+				scan.next();
+			}catch(IndexOutOfBoundsException e3){
+				System.err.println("Conta inválida.");
+			}catch(ValorInvalidoException e4){
+				System.err.println(e4.getMessage());
 			}
-			
-		}while(true);
+		}while(opcao == true);
 	}
 	
 	private Integer menuPrincipal(){
@@ -38,7 +55,8 @@ public class ContaBancariaUI {
 					           "1 Para cadastrar uma nova conta\n"+
 		                       "2 Para depositar valor\n"+
 					           "3 Para sacar valor\n"+
-		                       "4 Para listar contas\n");
+		                       "4 Para listar contas\n"+
+					           "5 Para encerrar\n");
 			
 			int opcaoMenuPrincipal = scan.nextInt();
 			scan.nextLine();
@@ -54,10 +72,16 @@ public class ContaBancariaUI {
 		int opcaoCadastroConta = scan.nextInt();
 		scan.nextLine();
 		
-		cadastrandoConta(opcaoCadastroConta);
+		if(opcaoCadastroConta == 1 || opcaoCadastroConta == 2){
+			cadastrandoConta(opcaoCadastroConta);
+		}else{
+			System.err.println("Opção Inválida.");
+		}
+		
 	}
 	
 	private void cadastrandoConta(int opcaoConta){
+		
 		System.out.println("Digite o nome do títular da conta: \n");
 		String titular = scan.nextLine();
 		
@@ -69,18 +93,21 @@ public class ContaBancariaUI {
 		System.out.println("Sua conta foi cadastrada!");
 	}
 	
-	private void sacarValor(){
-		System.out.println("Digite o ID da conta que deseja sacar: \n");
-		service.listarConta();
-		int idConta = scan.nextInt();
+	private void sacarValor()throws SaldoInsuficienteException,ValorInvalidoException{
 		
-		System.out.println("Digite o valor do saque: \n");
-		double valorSaque = scan.nextDouble();
-		
-		service.sacar(idConta, valorSaque);
+				System.out.println("Digite o ID da conta que deseja sacar: \n");
+				service.listarConta();
+				int idConta = scan.nextInt();
+				
+				System.out.println("Digite o valor do saque: \n");
+				double valorSaque = scan.nextDouble();
+				
+				service.sacar(idConta, valorSaque);
+				
+				System.out.println("Saque realizado!");		
 	}
 	
-	private void depositarValor(){
+	private void depositarValor()throws ValorInvalidoException{
 		System.out.println("Digite o ID da conta que deseja depositar: \n");
 		service.listarConta();
 		int idConta = scan.nextInt();
@@ -90,8 +117,4 @@ public class ContaBancariaUI {
 		
 		service.depositar(idConta, valorDeposito);
 	}
-	
-
-	
-
 }
