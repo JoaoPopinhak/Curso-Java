@@ -3,10 +3,12 @@ package JAVA.AULA59STRINGSSPLITTOKENS;
 public class StringToken {
 
 	public static void main(String[] args) {
+		/*
+		 * Tokenização de strings é o processo de pegar grandes pedaõs de dados e dividir em dados pequenos*/
 		
-		String s = "XHTML; CSS; JavaScript; jQuery; Java";
+		String s = "XHTML;CSS;JavaScript;jQuery;Java";
 		
-		String[] tokens = s.split(";");//.split(); quebra os tokens pelos ; retorna um array de strings
+		String[] tokens = s.split(";");//.split(); quebra os tokens pelos ';' ou o caracter informado no parametro e retorna um array de strings
 		
 		System.out.println(tokens.length);
 		
