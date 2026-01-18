@@ -1,10 +1,7 @@
 package POO.AULA51POLIFCLASSFINAL;
 
 public final class Cachorro extends Animal {//Como a classe pai recebeu o modificador final isso impede que essa classe seja extendida pela classe filho 
-	
-	
-	
-	
+
 	public Cachorro(){
 		super(10, "Carne"); //utilizando o contrutor da classe pai
 	}

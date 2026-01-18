@@ -2,6 +2,8 @@ package POO.AULA57DEBUG;
 
 public class Aula57Debug {
 	
+	int resultado;
+	
 	public static int raiz(int numero){
 		int raiz = 0, impar = 1;
 		while(numero >= impar){
@@ -23,5 +25,11 @@ public class Aula57Debug {
 			System.out.println("Raiz correta");		
 			}
 		
+		
+		/*Teclas de atalho debug
+		 * F5 step into
+		 * F6 step over
+		 * F7 
+		 * F8*/
 	}
 }

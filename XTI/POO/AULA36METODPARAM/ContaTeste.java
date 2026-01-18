@@ -4,7 +4,7 @@ public class ContaTeste {
 
 	public static void main(String[] args) {
 		
-		Conta conta = new Conta();
+		Conta conta = new Conta(null, 0);
 		
 		conta.cliente = "Nascimento";
 		conta.saldo = 100.25;
@@ -14,7 +14,7 @@ public class ContaTeste {
 		conta.deposito(900);
 		conta.exibeSaldo();
 		
-		Conta conta2 = new Conta();
+		Conta conta2 = new Conta(null, 0);
 		conta2.cliente = "Tais";
 		conta2.saldo = 300;
 		conta2.exibeSaldo();
