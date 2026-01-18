@@ -1,5 +1,6 @@
 package ATIVIDADES.ORETORNO.ATIVIDADE03;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -11,8 +12,9 @@ public class ContaBancariaUI {
 		this.service = service;
 	}
 	
-	public void contaBancaria()throws SaldoInsuficienteException,ValorInvalidoException{
+	public void contaBancaria()throws SaldoInsuficienteException,ValorInvalidoException, IOException{
 		boolean opcao = true;
+		service.lerConta();
 		do {
 			try {
 				int opcaoMenuPrincipal = menuPrincipal();
@@ -31,6 +33,10 @@ public class ContaBancariaUI {
 					service.listarConta();
 					break;
 				case 5:
+					transferirValor();
+					break;
+				case 6:
+					service.salvarConta();
 					opcao = false;
 					break;
 				default:
@@ -56,7 +62,8 @@ public class ContaBancariaUI {
 		                       "2 Para depositar valor\n"+
 					           "3 Para sacar valor\n"+
 		                       "4 Para listar contas\n"+
-					           "5 Para encerrar\n");
+					           "5 Para transferência\n"+
+		                       "6 Para encerrar.");
 			
 			int opcaoMenuPrincipal = scan.nextInt();
 			scan.nextLine();
@@ -116,5 +123,27 @@ public class ContaBancariaUI {
 		double valorDeposito = scan.nextDouble();
 		
 		service.depositar(idConta, valorDeposito);
+		
+		System.out.println("Depósito realizado!");	
 	}
+	
+	
+	private void transferirValor() throws SaldoInsuficienteException, ValorInvalidoException{
+		System.out.println("Selecione a conta de origem da transferência: ");
+		service.listarConta();
+		int contaOrigem = scan.nextInt();
+		
+		
+		System.out.println("Selecione a conta de destino da transferência: ");
+		service.listarConta();
+		int contaDestino = scan.nextInt();
+		
+		
+		System.out.println("Digite o valor da transferência: ");
+		double valorTrans = scan.nextDouble();
+		
+		service.transferir(contaOrigem, contaDestino, valorTrans);
+		
+		System.out.println("Transferência realizada.\n");
+	}	
 }

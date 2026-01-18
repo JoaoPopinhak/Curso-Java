@@ -44,9 +44,16 @@ public class ContaBancaria {
 		}
 	}
 	
+	public void transferir(ContaBancaria contaDestino, double valor) throws SaldoInsuficienteException, ValorInvalidoException{
+		this.sacar(valor);
+		contaDestino.depositar(valor);
+	}
+	
 	public void mostrarInformacoes(int posicaoLista){
 		System.out.println("ID: " + posicaoLista + "\n" 
 				          +"Nome Titular: " + getTitular()+"\n"
 				          +"Saldo Disponível: " + getSaldo()+" R$\n");
 	}
+	
+	
 }

@@ -11,6 +11,16 @@ public class ContaCorrente extends ContaBancaria{
 		double valorComTaxa = valorSaque + 2.50;
 		super.sacar(valorComTaxa);
 	}
+	
+	public void transferir(ContaBancaria contaDestino, double valor) throws SaldoInsuficienteException, ValorInvalidoException{
+		if(this.getSaldo() < valor){
+			throw new SaldoInsuficienteException("Seu saldo é insuficiente para completar essa operação.");
+		}else{
+			this.setSaldo(getSaldo() - valor);
+			contaDestino.depositar(valor);
+		}
+		
+	}
 
 	
 }

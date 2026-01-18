@@ -1,9 +1,11 @@
 package ATIVIDADES.ORETORNO.ATIVIDADE03;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ContaBancariaImpl implements ContaBancariaService{
 	
 	ArrayList <ContaBancaria> listContaBancaria = new ArrayList<ContaBancaria>();
+	Aula64Arquivo3 salvarLerConta = new Aula64Arquivo3();
 
 	@Override
 	public void cadastrarConta(int opcaoConta, String titular, double saldo){
@@ -24,14 +26,21 @@ public class ContaBancariaImpl implements ContaBancariaService{
 	}
 
 	@Override
-	public void depositar(int idConta, double valorDeposito)throws ValorInvalidoException{
+	public void depositar(int idConta, double valorDeposito) throws ValorInvalidoException{
 		ContaBancaria conta = listContaBancaria.get(idConta);
 		conta.depositar(valorDeposito);
+	}
+	
+	@Override
+	public void transferir(int idContaOrigem, int idContaDestino, double valor) throws SaldoInsuficienteException, ValorInvalidoException {
+		ContaBancaria contaOrigem = listContaBancaria.get(idContaOrigem);
+		ContaBancaria contaDestino = listContaBancaria.get(idContaDestino);
+		contaOrigem.transferir(contaDestino, valor);	
 	}
 
 	@Override
 	public void renderJuros(int idConta){
-		ContaPoupanca conta =(ContaPoupanca)listContaBancaria.get(idConta);
+		ContaPoupanca conta = (ContaPoupanca)listContaBancaria.get(idConta);
 		conta.renderJuros();
 	}
 	
@@ -42,5 +51,18 @@ public class ContaBancariaImpl implements ContaBancariaService{
 			conta.mostrarInformacoes(posicaoLista);
 		}
 	}
+
+	@Override
+	public void salvarConta() throws IOException {
+		salvarLerConta.salvarConta(listContaBancaria);
+	}
+
+	@Override
+	public void lerConta() throws IOException {
+		salvarLerConta.lerConta(listContaBancaria);
+	}
 	
+	
+
+
 }
