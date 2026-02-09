@@ -51,9 +51,8 @@ public class Datas {
 		c.set(Calendar.YEAR, 2001);//No metodo set podemos escolher qual campo desejamos alterar da data. Inserindo o campo que desejamos alterar e o valor.
 		c.set(Calendar.MONTH, Calendar.MARCH);//Para alterar o Mês pode ser dessa forma ou inserindo o valor que corresponde o Mês
 		c.set(Calendar.DAY_OF_MONTH, 21);
-		
+		c.set(2001, 02, 25);
 		System.out.println(c.getTime());
-		
 		
 		
 		/* Além dos metodos de recuperação 'get' e de definição 'set também possuímos os metódos para limpeza de campos*/

@@ -12,7 +12,7 @@ public class Serializa {
 
 	public static void main(String[] args) throws Exception {
 
-		/*A serialização só pode ser feito em objetos serializaveis para sbabermos se o objeto pode ser seriualizado a classe do
+		/*A serialização só pode ser feito em objetos serializaveis para sabermos se o objeto pode ser serializado a classe do
 		 *objeto precisa implementar a classe java.io.seralizable*/
 		
 		

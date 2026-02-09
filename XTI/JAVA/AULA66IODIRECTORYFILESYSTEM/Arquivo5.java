@@ -25,7 +25,7 @@ public class Arquivo5 {
 		
 		Path dir = Paths.get("E:\\coisas aleatorias\\DEV\\Curso-Java-main\\XTI");
 		
-		try(DirectoryStream<Path> stream = Files.newDirectoryStream(dir)/*Retorna um objeto do tipo DirectoryStream*/){
+		try(DirectoryStream<Path> stream = Files.newDirectoryStream(dir)/*Retorna um objeto do tipo DirectoryStream (uma lista) que contém o conteudo deste caminho 'dir'*/){
 			
 			for (Path path : stream) {
 				System.out.println(path.getFileName());
