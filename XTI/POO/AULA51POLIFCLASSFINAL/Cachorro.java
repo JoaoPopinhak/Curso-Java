@@ -12,9 +12,9 @@ public final class Cachorro extends Animal {//Como a classe pai recebeu o modifi
 			System.out.println("Au, au");
 		}
 		
-		void dormir(){//Se o modificador final for implementado no metodo da classe pai não é possível sobreescrever esse metodo em seus filhos
+		/*void dormir(){//Se o modificador final for implementado no metodo da classe pai não é possível sobreescrever esse metodo em seus filhos
 			System.out.println("Dormir");
-		}
+		}*/
 		
 	
 

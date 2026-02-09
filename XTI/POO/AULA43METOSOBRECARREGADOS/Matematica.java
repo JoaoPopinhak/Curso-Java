@@ -10,12 +10,12 @@ public class Matematica {
 	 * porém todos os metodos estão com o mesmo nome
 	 */
 	
-	int media (int num1 , int num2){
+	public int media (int num1 , int num2){
 		System.out.print("media (int num1 , int num2) ");//Assinatura do metodo
 		return num1+num2/2;
 	}
 	
-	int media (String y, String x) {
+	public int media (String y, String x) {
 		System.out.print("media (String y, String x) ");
 		int ix = Integer.parseInt(x);
 		int iy = Integer.parseInt(y);

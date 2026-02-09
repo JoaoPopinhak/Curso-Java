@@ -10,7 +10,7 @@ public class Matematica {
 	 */
 	
 	
-	int maior(int num1, int num2){
+	public int maior(int num1, int num2){
 		if(num1>num2){
 			return num1;
 		}else {
@@ -19,7 +19,7 @@ public class Matematica {
 	}
 	
 	
-	int soma (int num1, int num2) {
+	public int soma (int num1, int num2) {
 		return num1+num2;
 	}
 }

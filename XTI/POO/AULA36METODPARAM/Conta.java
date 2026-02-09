@@ -1,8 +1,10 @@
 package POO.AULA36METODPARAM;
 
+@SuppressWarnings("serial")
 public class Conta implements java.io.Serializable{
-	String cliente;
-	double saldo;
+	
+	public String cliente;
+	public double saldo;
 	
 	public Conta(String cliente, double saldo){
 		this.cliente = cliente;
