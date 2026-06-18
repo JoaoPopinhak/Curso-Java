@@ -1,0 +1,74 @@
+package Aprendizado;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
+import infrastructure.entity.ContaBancariaEntity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+
+//Classe utilizada para aula de HIBERNATE
+
+//JAVA com JPA #1 - Criando do zero projeto JPA com Hibernate LINK: https://youtube.com/playlist?list=PL8fIRnD1uUSkrhYTRAkB1xi_v3pyZw48Y&si=1JXcb34HHKOwwPln
+
+public class JPA {
+	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ProjetoFinanceiroPU");
+	private static EntityManager entityManager = entityManagerFactory.createEntityManager();
+	
+	public static void main(String[] args) {
+	
+		//FIND
+		//Realiza uma consulta ao banco de dados com a infomração da chave primaria seja igual 1 e com o resultSet com o retorno dessa consulta cria o objeto
+		//Exemplo utilizando o método find do objeto entityManager. O que ele faz? Ele  cria recupera as informações do banco, onde o ID seja = 1
+		
+		ContaBancariaEntity contaBancaria = entityManager.find(ContaBancariaEntity.class, 1);
+		System.out.println("Nome cliente: " + contaBancaria.getNomeBanco());		
+		
+		//INSERT
+		//Criando uma conta e adicionando no banco
+		ContaBancariaEntity conta = new ContaBancariaEntity();
+		conta.setNomeBanco("Banco OTeste id");
+		conta.setDataCriacao(LocalDateTime.now());
+		conta.setCodigoBanco("200");
+		conta.setSaldo(new BigDecimal("0"));
+		
+		//Inicia um esquema transação
+		entityManager.getTransaction().begin();
+		
+		//cria o registro com as informações da conta
+		entityManager.persist(conta);
+		
+		//Finaliza comita a transação.
+		entityManager.getTransaction().commit();
+		
+		//DELETE
+		//Realizando a exclusão de um registro
+		ContaBancariaEntity conta1 = entityManager.find(ContaBancariaEntity.class, 2);
+
+		//Deve iniciar um esquema de transação
+		entityManager.getTransaction().begin();
+		//Porém ao invés de utilizarmos o método .persist, utilizando o método .remove
+		entityManager.remove(conta1);
+		entityManager.getTransaction().commit();
+		
+		//UPDATE
+		ContaBancariaEntity conta2 = entityManager.find(ContaBancariaEntity.class, 1);
+		conta2.setNomeBanco("Banco do brasil");
+		
+		//Inicia um esquema transação
+		entityManager.getTransaction().begin();
+				
+		//Realiza o UPDATE da conta 1
+		entityManager.merge(conta2);
+				
+		//Finaliza comita a transação.
+		entityManager.getTransaction().commit();
+		
+		
+		//Realizando o fechamento dos entityManeger's após realizar as operações desejadas
+		
+		entityManagerFactory.close();
+		entityManager.close();
+		
+	}
+} 

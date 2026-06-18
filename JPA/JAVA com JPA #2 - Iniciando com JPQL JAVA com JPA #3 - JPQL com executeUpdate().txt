@@ -1,0 +1,61 @@
+package Aprendizado;
+
+import java.util.List;
+
+import infrastructure.entity.ContaBancariaEntity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
+
+public class JPQL {
+	
+	private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("ProjetoFinanceiroPU");
+	private static EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+	public static void main(String[] args) {
+		
+//----------------JAVA com JPA #2 - Iniciando com JPQL-------------------
+	    //Realizando as consultar e jogando dentro de uma List(Collections)
+		
+		String jpql = "select c from ContaBancariaEntity c";
+		TypedQuery<ContaBancariaEntity> typedQuery = entityManager.createQuery(jpql, ContaBancariaEntity.class);
+		List<ContaBancariaEntity> listaCliente = typedQuery.getResultList();
+		
+		for (ContaBancariaEntity contaBancaria : listaCliente) {
+			System.out.println(contaBancaria.getNomeBanco() + " Seu saldo: " + contaBancaria.getSaldo());
+		}
+		
+		String jpql = "select c from ContaBancariaEntity c where id = :id";
+		TypedQuery<ContaBancariaEntity> typedQuery = entityManager.createQuery(jpql, ContaBancariaEntity.class).setParameter("id", 1);
+		List<ContaBancariaEntity> listaCliente = typedQuery.getResultList();
+		
+		for (ContaBancariaEntity contaBancaria : listaCliente) {
+			System.out.println(contaBancaria.getNomeBanco() + " Seu saldo: " + contaBancaria.getSaldo());
+		}
+		
+
+//-------JAVA com JPA #3 - JPQL com executeUpdate()-----------
+//ex: 1
+		long id = 1;
+		
+		entityManager.getTransaction().begin();
+		entityManager.createQuery("delete from ContaBancariaEntity where id =:id").setParameter("id", id).executeUpdate();
+		entityManager.getTransaction().commit();
+		
+//ex: 2
+
+		long id2 = 6;
+		String codigoBanco = "210";
+		
+		entityManager.getTransaction().begin();
+		entityManager.createQuery("update ContaBancariaEntity cb set cb.codigoBanco = :codigoBanco  where cb.id = :id").setParameter("codigoBanco",codigoBanco).setParameter("id",id2).executeUpdate();
+		entityManager.getTransaction().commit();
+		
+		
+		entityManager.close();
+		entityManagerFactory.close();
+		
+
+	}
+}
